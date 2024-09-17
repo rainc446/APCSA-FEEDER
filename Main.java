@@ -1,3 +1,8 @@
 public class Main {
-    Feeder f = new Feeder();
+
+    public static void main(String[] args)
+    {
+        Feeder f = new Feeder();
+        System.out.println(f);
+    }
 }
