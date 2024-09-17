@@ -23,5 +23,9 @@ public class Feeder {
     {
         return 0;
     }
+    public int getCurrentFood()
+    {
+        return currentFood;
+    }
 
 }
