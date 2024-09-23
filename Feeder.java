@@ -6,6 +6,7 @@ public class Feeder {
      */
 
     private int currentFood;
+    private int days;
 
     public Feeder(int c)
     {
@@ -19,13 +20,18 @@ public class Feeder {
      */
     public void simulateOneDay(int numBirds)
     {
-        if((Math.random()*10) < .05) {currentFood = 0;}
+
+        if((Math.random()*10) < .05)
+        {
+            currentFood = 0;
+        }
         else
         {
             int eaten = (int) (Math.random() *41 ) +10;
             currentFood -= eaten*numBirds;
             if(currentFood < 0) {currentFood = 0;}
         }
+
     }
 
     /**
@@ -35,42 +41,46 @@ public class Feeder {
      */
     public int simulateManyDays(int numBirds, int numDays)
     {
-        for(int days = 0; days < numDays; days++)
+        for(days = 0; days < numDays; days++)
         {
 
-            if((Math.random()*10) < .05)
+            if((Math.random()*10) < .05) //simulates bear
             {
                 currentFood = 0;
-                System.out.println("Day " + days + " Amount of Food:" + currentFood);
-                System.out.println("A bear has found the feeder on day " + days);
-                return currentFood; //ends simulation
+                //System.out.println("Day " + days + " Amount of Food:" + currentFood);
+                //System.out.println("A bear has found the feeder on day " + days);
+                return days; //ends simulation
             }
 
 
-            else
+            else //simulates no bear
             {
                 int eaten = (int) (Math.random() *41 ) +10;
                 currentFood -= eaten*numBirds;
                 if(currentFood < 0)
                 {
                     currentFood = 0;
+                    return days;
                 }
 
-                System.out.println("Day " + days + " Amount of Food:" + currentFood); //doesn't work/print
+                //System.out.println("Day " + days + " Amount of Food:" + currentFood); //doesn't work/print
             }
 
         }
-        return currentFood;
+        return days;
     }
     public int getCurrentFood()
     {
         return currentFood;
     }
 
-    //doesn't work
     public String toString()
     {
         return "Current Food: " + currentFood;
+    }
+    public String toSting()
+    {
+        return "Number of days that a bear or birds found food:" + days;
     }
 
 }
