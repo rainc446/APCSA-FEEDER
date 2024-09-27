@@ -7,6 +7,7 @@ public class Feeder {
 
     private int currentFood;
     private int count;
+    private boolean simulatingDays;
 
     public Feeder(int c)
     {
@@ -41,12 +42,14 @@ public class Feeder {
      */
     public int simulateManyDays(int numBirds, int numDays)
     {
+        simulatingDays = true;
         count = 0; //if food is 0 day will still be 1
+        if (currentFood == 0){return currentFood;}
         for(int days = 0; days < numDays; days++)
         {
-            count++;
             if((Math.random()*10) < .05) //simulates bear
             {
+                count++;
                 currentFood = 0;
                 System.out.println("Day " + count + ": simulateOneDay leaves "+ currentFood+ " grams of food in the feeder" );
                 return count; //ends simulation
@@ -57,6 +60,7 @@ public class Feeder {
             {
                 int eaten = (int) (Math.random() *41 ) +10;
                 currentFood -= eaten*numBirds;
+                count++;
                 if(currentFood < 0)
                 {
                     currentFood = 0;
@@ -77,7 +81,11 @@ public class Feeder {
 
     public String toString()
     {
-        return "Current Food: " + currentFood + "\n"+  "Days: " + count;
+        if (simulatingDays){
+            return "Current Food: " + currentFood + "\n"+  "Days: " + count;
+        }
+        return "Current Food: " + currentFood;
+
     }
 
 }
